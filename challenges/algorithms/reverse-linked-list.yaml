@@ -1,0 +1,238 @@
+id: reverse-linked-list
+title: Reverse Linked List
+description: |
+  Given the head of a singly linked list, reverse the list and return the reversed list.
+
+  Example:
+  Input: 1 -> 2 -> 3 -> 4 -> 5
+  Output: 5 -> 4 -> 3 -> 2 -> 1
+
+  Input: 1 -> 2
+  Output: 2 -> 1
+
+  Input: []
+  Output: []
+
+  Challenge: Can you do it iteratively and recursively?
+difficulty: easy
+category: data-structures
+tags:
+  - linked-list
+  - recursion
+  - pointers
+languages:
+  - languageId: javascript
+    starterCode: |
+      /**
+       * Reverse Linked List
+       * Reverse a singly linked list
+       */
+
+      // ListNode definition (already provided)
+      class ListNode {
+        constructor(val = 0, next = null) {
+          this.val = val;
+          this.next = next;
+        }
+      }
+
+      /**
+       * @param {ListNode} head
+       * @return {ListNode}
+       */
+      function reverseList(head) {
+        // Your code here
+      }
+
+      // Helper function to create list from array
+      function createList(arr) {
+        if (!arr.length) return null;
+        const head = new ListNode(arr[0]);
+        let current = head;
+        for (let i = 1; i < arr.length; i++) {
+          current.next = new ListNode(arr[i]);
+          current = current.next;
+        }
+        return head;
+      }
+
+      // Helper function to convert list to array
+      function listToArray(head) {
+        const result = [];
+        let current = head;
+        while (current) {
+          result.push(current.val);
+          current = current.next;
+        }
+        return result;
+      }
+
+      if (typeof module !== 'undefined' && module.exports) {
+        module.exports = { reverseList, createList, listToArray, ListNode };
+      }
+    solutionCode: |
+      class ListNode {
+        constructor(val = 0, next = null) {
+          this.val = val;
+          this.next = next;
+        }
+      }
+
+      function reverseList(head) {
+        let prev = null;
+        let current = head;
+
+        while (current !== null) {
+          const nextTemp = current.next;
+          current.next = prev;
+          prev = current;
+          current = nextTemp;
+        }
+
+        return prev;
+      }
+
+      function createList(arr) {
+        if (!arr.length) return null;
+        const head = new ListNode(arr[0]);
+        let current = head;
+        for (let i = 1; i < arr.length; i++) {
+          current.next = new ListNode(arr[i]);
+          current = current.next;
+        }
+        return head;
+      }
+
+      function listToArray(head) {
+        const result = [];
+        let current = head;
+        while (current) {
+          result.push(current.val);
+          current = current.next;
+        }
+        return result;
+      }
+
+      if (typeof module !== 'undefined' && module.exports) {
+        module.exports = { reverseList, createList, listToArray, ListNode };
+      }
+    testCases:
+      - id: test-1
+        description: Normal list
+        input: [1, 2, 3, 4, 5]
+        expectedOutput: [5, 4, 3, 2, 1]
+      - id: test-2
+        description: Two elements
+        input: [1, 2]
+        expectedOutput: [2, 1]
+      - id: test-3
+        description: Single element
+        input: [1]
+        expectedOutput: [1]
+      - id: test-4
+        description: Empty list
+        input: []
+        expectedOutput: []
+        hidden: true
+    testConfig:
+      runCommand: node {{testFile}}
+
+  - languageId: python
+    starterCode: |
+      """
+      Reverse Linked List
+      Reverse a singly linked list
+      """
+
+      class ListNode:
+          def __init__(self, val=0, next=None):
+              self.val = val
+              self.next = next
+
+      def reverse_list(head: ListNode) -> ListNode:
+          """
+          :param head: Head of linked list
+          :return: Head of reversed list
+          """
+          # Your code here
+          pass
+
+      # Helper functions
+      def create_list(arr):
+          if not arr:
+              return None
+          head = ListNode(arr[0])
+          current = head
+          for val in arr[1:]:
+              current.next = ListNode(val)
+              current = current.next
+          return head
+
+      def list_to_array(head):
+          result = []
+          current = head
+          while current:
+              result.append(current.val)
+              current = current.next
+          return result
+    solutionCode: |
+      class ListNode:
+          def __init__(self, val=0, next=None):
+              self.val = val
+              self.next = next
+
+      def reverse_list(head: ListNode) -> ListNode:
+          prev = None
+          current = head
+
+          while current:
+              next_temp = current.next
+              current.next = prev
+              prev = current
+              current = next_temp
+
+          return prev
+
+      def create_list(arr):
+          if not arr:
+              return None
+          head = ListNode(arr[0])
+          current = head
+          for val in arr[1:]:
+              current.next = ListNode(val)
+              current = current.next
+          return head
+
+      def list_to_array(head):
+          result = []
+          current = head
+          while current:
+              result.append(current.val)
+              current = current.next
+          return result
+    testCases:
+      - id: test-1
+        description: Normal list
+        input: [1, 2, 3, 4, 5]
+        expectedOutput: [5, 4, 3, 2, 1]
+      - id: test-2
+        description: Two elements
+        input: [1, 2]
+        expectedOutput: [2, 1]
+      - id: test-3
+        description: Single element
+        input: [1]
+        expectedOutput: [1]
+      - id: test-4
+        description: Empty list
+        input: []
+        expectedOutput: []
+        hidden: true
+    testConfig:
+      runCommand: python3 {{testFile}}
+
+author: Code Challenge Hub Team
+createdAt: '2025-01-15T12:00:00Z'
+updatedAt: '2025-01-15T12:00:00Z'
+version: '1.0.0'
+status: published

@@ -1,0 +1,171 @@
+id: valid-anagram
+title: Valid Anagram
+description: |
+  Given two strings s and t, return true if t is an anagram of s, and false otherwise.
+  An anagram is a word formed by rearranging the letters of another word,
+  using all the original letters exactly once.
+
+  Example:
+  Input: s = "anagram", t = "nagaram"
+  Output: true
+
+  Input: s = "rat", t = "car"
+  Output: false
+difficulty: easy
+category: algorithms
+tags:
+  - strings
+  - hash-table
+  - sorting
+languages:
+  - languageId: javascript
+    starterCode: |
+      /**
+       * Valid Anagram
+       * Check if two strings are anagrams
+       * @param {string} s
+       * @param {string} t
+       * @return {boolean}
+       */
+      function isAnagram(s, t) {
+        // Your code here
+      }
+
+      if (typeof module !== 'undefined' && module.exports) {
+        module.exports = { isAnagram };
+      }
+    solutionCode: |
+      function isAnagram(s, t) {
+        if (s.length !== t.length) return false;
+
+        const count = {};
+
+        // Count characters in s
+        for (let char of s) {
+          count[char] = (count[char] || 0) + 1;
+        }
+
+        // Decrease count for characters in t
+        for (let char of t) {
+          if (!count[char]) return false;
+          count[char]--;
+        }
+
+        return true;
+      }
+
+      if (typeof module !== 'undefined' && module.exports) {
+        module.exports = { isAnagram };
+      }
+    testCases:
+      - id: test-1
+        description: Valid anagram
+        input:
+          s: "anagram"
+          t: "nagaram"
+        expectedOutput: true
+      - id: test-2
+        description: Not an anagram
+        input:
+          s: "rat"
+          t: "car"
+        expectedOutput: false
+      - id: test-3
+        description: Different lengths
+        input:
+          s: "hello"
+          t: "world!"
+        expectedOutput: false
+      - id: test-4
+        description: Empty strings
+        input:
+          s: ""
+          t: ""
+        expectedOutput: true
+        hidden: true
+      - id: test-5
+        description: Single character
+        input:
+          s: "a"
+          t: "a"
+        expectedOutput: true
+        hidden: true
+    testConfig:
+      runCommand: node {{testFile}}
+
+  - languageId: python
+    starterCode: |
+      """
+      Valid Anagram
+      Check if two strings are anagrams
+      """
+
+      def is_anagram(s: str, t: str) -> bool:
+          """
+          :param s: First string
+          :param t: Second string
+          :return: True if anagrams, False otherwise
+          """
+          # Your code here
+          pass
+    solutionCode: |
+      def is_anagram(s: str, t: str) -> bool:
+          if len(s) != len(t):
+              return False
+
+          count = {}
+
+          # Count characters in s
+          for char in s:
+              count[char] = count.get(char, 0) + 1
+
+          # Decrease count for characters in t
+          for char in t:
+              if char not in count:
+                  return False
+              count[char] -= 1
+              if count[char] < 0:
+                  return False
+
+          return True
+    testCases:
+      - id: test-1
+        description: Valid anagram
+        input:
+          s: "anagram"
+          t: "nagaram"
+        expectedOutput: true
+      - id: test-2
+        description: Not an anagram
+        input:
+          s: "rat"
+          t: "car"
+        expectedOutput: false
+      - id: test-3
+        description: Different lengths
+        input:
+          s: "hello"
+          t: "world!"
+        expectedOutput: false
+      - id: test-4
+        description: Empty strings
+        input:
+          s: ""
+          t: ""
+        expectedOutput: true
+        hidden: true
+      - id: test-5
+        description: Single character
+        input:
+          s: "a"
+          t: "a"
+        expectedOutput: true
+        hidden: true
+    testConfig:
+      runCommand: python3 {{testFile}}
+
+author: Code Challenge Hub Team
+createdAt: '2025-01-15T12:00:00Z'
+updatedAt: '2025-01-15T12:00:00Z'
+version: '1.0.0'
+status: published

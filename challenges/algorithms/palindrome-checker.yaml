@@ -1,0 +1,131 @@
+id: palindrome-checker
+title: Palindrome Checker
+description: |
+  Write a function that checks if a given string is a palindrome.
+  A palindrome is a word, phrase, or sequence that reads the same backward as forward.
+  Ignore spaces, punctuation, and letter casing.
+
+  Examples:
+  - "racecar" → true
+  - "A man a plan a canal Panama" → true
+  - "hello" → false
+difficulty: easy
+category: algorithms
+tags:
+  - strings
+  - algorithms
+  - two-pointers
+languages:
+  - languageId: javascript
+    starterCode: |
+      /**
+       * Palindrome Checker
+       * Check if a string is a palindrome
+       * @param {string} str
+       * @return {boolean}
+       */
+      function isPalindrome(str) {
+        // Your code here
+      }
+
+      if (typeof module !== 'undefined' && module.exports) {
+        module.exports = { isPalindrome };
+      }
+    solutionCode: |
+      function isPalindrome(str) {
+        // Remove non-alphanumeric characters and convert to lowercase
+        const cleaned = str.replace(/[^a-z0-9]/gi, '').toLowerCase();
+
+        // Check if reversed string equals original
+        return cleaned === cleaned.split('').reverse().join('');
+      }
+
+      if (typeof module !== 'undefined' && module.exports) {
+        module.exports = { isPalindrome };
+      }
+    testCases:
+      - id: test-1
+        description: Simple palindrome
+        input: "racecar"
+        expectedOutput: true
+      - id: test-2
+        description: Non-palindrome
+        input: "hello"
+        expectedOutput: false
+      - id: test-3
+        description: Palindrome with spaces
+        input: "A man a plan a canal Panama"
+        expectedOutput: true
+      - id: test-4
+        description: Single character
+        input: "a"
+        expectedOutput: true
+      - id: test-5
+        description: Empty string
+        input: ""
+        expectedOutput: true
+        hidden: true
+      - id: test-6
+        description: With punctuation
+        input: "Was it a car or a cat I saw?"
+        expectedOutput: true
+        hidden: true
+    testConfig:
+      runCommand: node {{testFile}}
+
+  - languageId: python
+    starterCode: |
+      """
+      Palindrome Checker
+      Check if a string is a palindrome
+      """
+
+      def is_palindrome(s: str) -> bool:
+          """
+          :param s: String to check
+          :return: True if palindrome, False otherwise
+          """
+          # Your code here
+          pass
+    solutionCode: |
+      def is_palindrome(s: str) -> bool:
+          # Remove non-alphanumeric and convert to lowercase
+          cleaned = ''.join(c.lower() for c in s if c.isalnum())
+
+          # Check if reversed equals original
+          return cleaned == cleaned[::-1]
+    testCases:
+      - id: test-1
+        description: Simple palindrome
+        input: "racecar"
+        expectedOutput: true
+      - id: test-2
+        description: Non-palindrome
+        input: "hello"
+        expectedOutput: false
+      - id: test-3
+        description: Palindrome with spaces
+        input: "A man a plan a canal Panama"
+        expectedOutput: true
+      - id: test-4
+        description: Single character
+        input: "a"
+        expectedOutput: true
+      - id: test-5
+        description: Empty string
+        input: ""
+        expectedOutput: true
+        hidden: true
+      - id: test-6
+        description: With punctuation
+        input: "Was it a car or a cat I saw?"
+        expectedOutput: true
+        hidden: true
+    testConfig:
+      runCommand: python3 {{testFile}}
+
+author: Code Challenge Hub Team
+createdAt: '2025-01-15T12:00:00Z'
+updatedAt: '2025-01-15T12:00:00Z'
+version: '1.0.0'
+status: published

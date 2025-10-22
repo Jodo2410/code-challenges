@@ -1,0 +1,180 @@
+id: binary-search
+title: Binary Search
+description: |
+  Given a sorted array of integers nums and a target value,
+  implement binary search to find the index of the target.
+  If the target is not found, return -1.
+
+  You must write an algorithm with O(log n) runtime complexity.
+
+  Example:
+  Input: nums = [-1, 0, 3, 5, 9, 12], target = 9
+  Output: 4
+
+  Input: nums = [-1, 0, 3, 5, 9, 12], target = 2
+  Output: -1
+difficulty: easy
+category: algorithms
+tags:
+  - binary-search
+  - arrays
+  - divide-and-conquer
+languages:
+  - languageId: javascript
+    starterCode: |
+      /**
+       * Binary Search
+       * Find target in sorted array using binary search
+       * @param {number[]} nums - Sorted array
+       * @param {number} target - Target value
+       * @return {number} - Index of target or -1
+       */
+      function binarySearch(nums, target) {
+        // Your code here
+      }
+
+      if (typeof module !== 'undefined' && module.exports) {
+        module.exports = { binarySearch };
+      }
+    solutionCode: |
+      function binarySearch(nums, target) {
+        let left = 0;
+        let right = nums.length - 1;
+
+        while (left <= right) {
+          const mid = Math.floor((left + right) / 2);
+
+          if (nums[mid] === target) {
+            return mid;
+          } else if (nums[mid] < target) {
+            left = mid + 1;
+          } else {
+            right = mid - 1;
+          }
+        }
+
+        return -1;
+      }
+
+      if (typeof module !== 'undefined' && module.exports) {
+        module.exports = { binarySearch };
+      }
+    testCases:
+      - id: test-1
+        description: Target found in middle
+        input:
+          nums: [-1, 0, 3, 5, 9, 12]
+          target: 9
+        expectedOutput: 4
+      - id: test-2
+        description: Target not found
+        input:
+          nums: [-1, 0, 3, 5, 9, 12]
+          target: 2
+        expectedOutput: -1
+      - id: test-3
+        description: Target at beginning
+        input:
+          nums: [-1, 0, 3, 5, 9, 12]
+          target: -1
+        expectedOutput: 0
+      - id: test-4
+        description: Target at end
+        input:
+          nums: [-1, 0, 3, 5, 9, 12]
+          target: 12
+        expectedOutput: 5
+      - id: test-5
+        description: Single element found
+        input:
+          nums: [5]
+          target: 5
+        expectedOutput: 0
+        hidden: true
+      - id: test-6
+        description: Single element not found
+        input:
+          nums: [5]
+          target: 3
+        expectedOutput: -1
+        hidden: true
+    testConfig:
+      runCommand: node {{testFile}}
+
+  - languageId: python
+    starterCode: |
+      """
+      Binary Search
+      Find target in sorted array using binary search
+      """
+
+      def binary_search(nums: list[int], target: int) -> int:
+          """
+          :param nums: Sorted array of integers
+          :param target: Target value to find
+          :return: Index of target or -1 if not found
+          """
+          # Your code here
+          pass
+    solutionCode: |
+      def binary_search(nums: list[int], target: int) -> int:
+          left, right = 0, len(nums) - 1
+
+          while left <= right:
+              mid = (left + right) // 2
+
+              if nums[mid] == target:
+                  return mid
+              elif nums[mid] < target:
+                  left = mid + 1
+              else:
+                  right = mid - 1
+
+          return -1
+    testCases:
+      - id: test-1
+        description: Target found in middle
+        input:
+          nums: [-1, 0, 3, 5, 9, 12]
+          target: 9
+        expectedOutput: 4
+      - id: test-2
+        description: Target not found
+        input:
+          nums: [-1, 0, 3, 5, 9, 12]
+          target: 2
+        expectedOutput: -1
+      - id: test-3
+        description: Target at beginning
+        input:
+          nums: [-1, 0, 3, 5, 9, 12]
+          target: -1
+        expectedOutput: 0
+      - id: test-4
+        description: Target at end
+        input:
+          nums: [-1, 0, 3, 5, 9, 12]
+          target: 12
+        expectedOutput: 5
+      - id: test-5
+        description: Single element found
+        input:
+          nums: [5]
+          target: 5
+        expectedOutput: 0
+        hidden: true
+      - id: test-6
+        description: Single element not found
+        input:
+          nums: [5]
+          target: 3
+        expectedOutput: -1
+        hidden: true
+    testConfig:
+      runCommand: python3 {{testFile}}
+
+author: Code Challenge Hub Team
+createdAt: '2025-01-15T12:00:00Z'
+updatedAt: '2025-01-15T12:00:00Z'
+version: '1.0.0'
+status: published

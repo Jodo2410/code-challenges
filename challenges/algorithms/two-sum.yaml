@@ -1,0 +1,191 @@
+id: two-sum
+title: Two Sum
+description: |
+  Given an array of integers nums and an integer target, return indices of the two numbers
+  such that they add up to target. You may assume that each input would have exactly one
+  solution, and you may not use the same element twice.
+difficulty: easy
+category: algorithms
+tags:
+  - arrays
+  - hash-table
+  - data-structures
+languages:
+  - languageId: javascript
+    starterCode: |
+      /**
+       * Two Sum
+       *
+       * Given an array of integers nums and an integer target,
+       * return indices of the two numbers such that they add up to target.
+       */
+      function twoSum(nums, target) {
+        // Your code here
+      }
+
+      // Export for testing
+      if (typeof module !== 'undefined' && module.exports) {
+        module.exports = { twoSum };
+      }
+    solutionCode: |
+      function twoSum(nums, target) {
+        const map = new Map();
+
+        for (let i = 0; i < nums.length; i++) {
+          const complement = target - nums[i];
+
+          if (map.has(complement)) {
+            return [map.get(complement), i];
+          }
+
+          map.set(nums[i], i);
+        }
+
+        return null;
+      }
+
+      if (typeof module !== 'undefined' && module.exports) {
+        module.exports = { twoSum };
+      }
+    testCases:
+      - id: test-1
+        description: Basic example with solution at beginning
+        input:
+          nums: [2, 7, 11, 15]
+          target: 9
+        expectedOutput: [0, 1]
+        timeout: 1000
+      - id: test-2
+        description: Solution in middle of array
+        input:
+          nums: [3, 2, 4]
+          target: 6
+        expectedOutput: [1, 2]
+        timeout: 1000
+      - id: test-3
+        description: Large numbers
+        input:
+          nums: [1000000, 2000000, 3000000]
+          target: 5000000
+        expectedOutput: [1, 2]
+        timeout: 1000
+        hidden: true
+    testConfig:
+      runCommand: node {{testFile}}
+      testFileTemplate: test.js
+
+  - languageId: python
+    starterCode: |
+      """
+      Two Sum
+
+      Given an array of integers nums and an integer target,
+      return indices of the two numbers such that they add up to target.
+      """
+
+      def two_sum(nums, target):
+          """
+          :param nums: List[int]
+          :param target: int
+          :return: List[int]
+          """
+          # Your code here
+          pass
+    solutionCode: |
+      def two_sum(nums, target):
+          seen = {}
+
+          for i, num in enumerate(nums):
+              complement = target - num
+
+              if complement in seen:
+                  return [seen[complement], i]
+
+              seen[num] = i
+
+          return None
+    testCases:
+      - id: test-1
+        description: Basic example with solution at beginning
+        input:
+          nums: [2, 7, 11, 15]
+          target: 9
+        expectedOutput: [0, 1]
+      - id: test-2
+        description: Solution in middle of array
+        input:
+          nums: [3, 2, 4]
+          target: 6
+        expectedOutput: [1, 2]
+      - id: test-3
+        description: Large numbers
+        input:
+          nums: [1000000, 2000000, 3000000]
+          target: 5000000
+        expectedOutput: [1, 2]
+        hidden: true
+    testConfig:
+      runCommand: python3 {{testFile}}
+      testFileTemplate: test.py
+
+  - languageId: typescript
+    starterCode: |
+      /**
+       * Two Sum
+       *
+       * Given an array of integers nums and an integer target,
+       * return indices of the two numbers such that they add up to target.
+       */
+      function twoSum(nums: number[], target: number): number[] | null {
+        // Your code here
+        return null;
+      }
+
+      export { twoSum };
+    solutionCode: |
+      function twoSum(nums: number[], target: number): number[] | null {
+        const map = new Map<number, number>();
+
+        for (let i = 0; i < nums.length; i++) {
+          const complement = target - nums[i];
+
+          if (map.has(complement)) {
+            return [map.get(complement)!, i];
+          }
+
+          map.set(nums[i], i);
+        }
+
+        return null;
+      }
+
+      export { twoSum };
+    testCases:
+      - id: test-1
+        description: Basic example
+        input:
+          nums: [2, 7, 11, 15]
+          target: 9
+        expectedOutput: [0, 1]
+      - id: test-2
+        description: Solution in middle
+        input:
+          nums: [3, 2, 4]
+          target: 6
+        expectedOutput: [1, 2]
+      - id: test-3
+        description: Hidden test
+        input:
+          nums: [1000000, 2000000, 3000000]
+          target: 5000000
+        expectedOutput: [1, 2]
+        hidden: true
+    testConfig:
+      runCommand: ts-node {{testFile}}
+      testFileTemplate: test.ts
+
+author: Code Challenge Hub Team
+createdAt: '2025-01-15T10:00:00Z'
+updatedAt: '2025-01-15T10:00:00Z'
+version: '1.0.0'
+status: published

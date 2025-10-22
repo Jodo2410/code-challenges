@@ -1,0 +1,133 @@
+id: find-missing-number
+title: Find Missing Number
+description: |
+  Given an array containing n distinct numbers taken from 0, 1, 2, ..., n,
+  find the one that is missing from the array.
+
+  Example:
+  Input: [3, 0, 1]
+  Output: 2
+
+  Input: [0, 1]
+  Output: 2
+
+  Input: [9,6,4,2,3,5,7,0,1]
+  Output: 8
+
+  Challenge: Can you do it in O(n) time and O(1) space?
+difficulty: easy
+category: algorithms
+tags:
+  - arrays
+  - math
+  - bit-manipulation
+languages:
+  - languageId: javascript
+    starterCode: |
+      /**
+       * Find Missing Number
+       * Find the missing number in an array of 0 to n
+       * @param {number[]} nums
+       * @return {number}
+       */
+      function findMissingNumber(nums) {
+        // Your code here
+      }
+
+      if (typeof module !== 'undefined' && module.exports) {
+        module.exports = { findMissingNumber };
+      }
+    solutionCode: |
+      function findMissingNumber(nums) {
+        const n = nums.length;
+        // Sum of 0 to n
+        const expectedSum = (n * (n + 1)) / 2;
+        // Actual sum
+        const actualSum = nums.reduce((sum, num) => sum + num, 0);
+        // Missing number
+        return expectedSum - actualSum;
+      }
+
+      if (typeof module !== 'undefined' && module.exports) {
+        module.exports = { findMissingNumber };
+      }
+    testCases:
+      - id: test-1
+        description: Missing number in middle
+        input: [3, 0, 1]
+        expectedOutput: 2
+      - id: test-2
+        description: Missing last number
+        input: [0, 1]
+        expectedOutput: 2
+      - id: test-3
+        description: Missing from larger array
+        input: [9, 6, 4, 2, 3, 5, 7, 0, 1]
+        expectedOutput: 8
+      - id: test-4
+        description: Missing first number
+        input: [1, 2, 3, 4, 5]
+        expectedOutput: 0
+        hidden: true
+      - id: test-5
+        description: Single element
+        input: [0]
+        expectedOutput: 1
+        hidden: true
+    testConfig:
+      runCommand: node {{testFile}}
+
+  - languageId: python
+    starterCode: |
+      """
+      Find Missing Number
+      Find the missing number in an array of 0 to n
+      """
+
+      def find_missing_number(nums: list[int]) -> int:
+          """
+          :param nums: List of numbers from 0 to n with one missing
+          :return: The missing number
+          """
+          # Your code here
+          pass
+    solutionCode: |
+      def find_missing_number(nums: list[int]) -> int:
+          n = len(nums)
+          # Sum of 0 to n
+          expected_sum = n * (n + 1) // 2
+          # Actual sum
+          actual_sum = sum(nums)
+          # Missing number
+          return expected_sum - actual_sum
+    testCases:
+      - id: test-1
+        description: Missing number in middle
+        input: [3, 0, 1]
+        expectedOutput: 2
+      - id: test-2
+        description: Missing last number
+        input: [0, 1]
+        expectedOutput: 2
+      - id: test-3
+        description: Missing from larger array
+        input: [9, 6, 4, 2, 3, 5, 7, 0, 1]
+        expectedOutput: 8
+      - id: test-4
+        description: Missing first number
+        input: [1, 2, 3, 4, 5]
+        expectedOutput: 0
+        hidden: true
+      - id: test-5
+        description: Single element
+        input: [0]
+        expectedOutput: 1
+        hidden: true
+    testConfig:
+      runCommand: python3 {{testFile}}
+
+author: Code Challenge Hub Team
+createdAt: '2025-01-15T12:00:00Z'
+updatedAt: '2025-01-15T12:00:00Z'
+version: '1.0.0'
+status: published
