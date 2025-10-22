@@ -50,23 +50,17 @@ languages:
     testCases:
       - id: test-1
         description: Basic example with solution at beginning
-        input:
-          nums: [2, 7, 11, 15]
-          target: 9
+        input: [[2, 7, 11, 15], 9]
         expectedOutput: [0, 1]
         timeout: 1000
       - id: test-2
         description: Solution in middle of array
-        input:
-          nums: [3, 2, 4]
-          target: 6
+        input: [[3, 2, 4], 6]
         expectedOutput: [1, 2]
         timeout: 1000
       - id: test-3
         description: Large numbers
-        input:
-          nums: [1000000, 2000000, 3000000]
-          target: 5000000
+        input: [[1000000, 2000000, 3000000], 5000000]
         expectedOutput: [1, 2]
         timeout: 1000
         hidden: true
@@ -107,21 +101,15 @@ languages:
     testCases:
       - id: test-1
         description: Basic example with solution at beginning
-        input:
-          nums: [2, 7, 11, 15]
-          target: 9
+        input: [[2, 7, 11, 15], 9]
         expectedOutput: [0, 1]
       - id: test-2
         description: Solution in middle of array
-        input:
-          nums: [3, 2, 4]
-          target: 6
+        input: [[3, 2, 4], 6]
         expectedOutput: [1, 2]
       - id: test-3
         description: Large numbers
-        input:
-          nums: [1000000, 2000000, 3000000]
-          target: 5000000
+        input: [[1000000, 2000000, 3000000], 5000000]
         expectedOutput: [1, 2]
         hidden: true
     testConfig:
@@ -163,21 +151,15 @@ languages:
     testCases:
       - id: test-1
         description: Basic example
-        input:
-          nums: [2, 7, 11, 15]
-          target: 9
+        input: [[2, 7, 11, 15], 9]
         expectedOutput: [0, 1]
       - id: test-2
         description: Solution in middle
-        input:
-          nums: [3, 2, 4]
-          target: 6
+        input: [[3, 2, 4], 6]
         expectedOutput: [1, 2]
       - id: test-3
         description: Hidden test
-        input:
-          nums: [1000000, 2000000, 3000000]
-          target: 5000000
+        input: [[1000000, 2000000, 3000000], 5000000]
         expectedOutput: [1, 2]
         hidden: true
     testConfig:
