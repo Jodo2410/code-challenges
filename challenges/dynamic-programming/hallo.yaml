@@ -1,0 +1,51 @@
+id: hallo
+title: Hallo
+description: HalloHalloHalloHalloHalloHalloHalloHalloHalloHalloHalloHalloHalloHalloHallo
+difficulty: medium
+category: dynamic-programming
+tags:
+  - Hallo
+languages:
+  - languageId: python
+    starterCode: |-
+      """
+      TODO: Add your function here
+
+      Args:
+          input: Input parameter
+
+      Returns:
+          Return value
+      """
+
+      def solution(*args):
+          # Your code here
+          pass
+    solutionCode: |-
+      """
+      TODO: Add your function here
+
+      Args:
+          input: Input parameter
+
+      Returns:
+          Return value
+      """
+
+      def solution(*args):
+          # Your code here
+          pass
+    testCases:
+      - id: test-1
+        description: Test
+        input: Hallo
+        expectedOutput: Hallo
+        hidden: false
+    testConfig:
+      runCommand: python3 {{testFile}}
+      testFileTemplate: test.py
+author: Unknown
+createdAt: 2025-10-22T11:57:03.024Z
+updatedAt: 2025-10-22T11:57:03.024Z
+version: 1.0.0
+status: draft
