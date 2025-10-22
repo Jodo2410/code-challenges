@@ -77,7 +77,7 @@ languages:
       return indices of the two numbers such that they add up to target.
       """
 
-      def two_sum(nums, target):
+      def solution(nums, target):
           """
           :param nums: List[int]
           :param target: int
@@ -86,7 +86,8 @@ languages:
           # Your code here
           pass
     solutionCode: |
-      def two_sum(nums, target):
+      def solution(nums, target):
+          """Two Sum Solution"""
           seen = {}
 
           for i, num in enumerate(nums):
