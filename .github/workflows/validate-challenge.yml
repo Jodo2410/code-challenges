@@ -1,0 +1,122 @@
+name: Validate Challenge Submission
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - 'challenges/**/*.yaml'
+      - 'challenges/**/*.yml'
+
+jobs:
+  validate:
+    name: Validate Challenge
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v41
+        with:
+          files: |
+            challenges/**/*.yaml
+            challenges/**/*.yml
+
+      - name: Install YAML validator
+        run: npm install -g js-yaml ajv ajv-formats
+
+      - name: Validate YAML syntax
+        if: steps.changed-files.outputs.any_changed == 'true'
+        run: |
+          echo "Validating YAML files..."
+          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+            echo "Checking $file"
+            cat "$file" | js-yaml
+          done
+
+      - name: Validate Challenge Schema
+        if: steps.changed-files.outputs.any_changed == 'true'
+        run: |
+          node .github/scripts/validate-schema.js ${{ steps.changed-files.outputs.all_changed_files }}
+
+      - name: Run Challenge Tests
+        if: steps.changed-files.outputs.any_changed == 'true'
+        run: |
+          node .github/scripts/run-tests.js ${{ steps.changed-files.outputs.all_changed_files }}
+
+      - name: Post validation results
+        if: always()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+
+            // Read validation results if they exist
+            let comment = '## Challenge Validation Results\n\n';
+
+            try {
+              if (fs.existsSync('validation-results.json')) {
+                const results = JSON.parse(fs.readFileSync('validation-results.json', 'utf8'));
+
+                if (results.valid) {
+                  comment += '✅ **All validations passed!**\n\n';
+                  comment += `- YAML Syntax: ✅\n`;
+                  comment += `- Schema Validation: ✅\n`;
+                  comment += `- Test Cases: ${results.totalTests} passed\n`;
+                  comment += `- Languages Tested: ${results.languages.join(', ')}\n`;
+                } else {
+                  comment += '❌ **Validation failed**\n\n';
+                  comment += '### Errors:\n';
+                  results.errors.forEach(err => {
+                    comment += `- **${err.field}**: ${err.message}\n`;
+                  });
+
+                  if (results.warnings && results.warnings.length > 0) {
+                    comment += '\n### Warnings:\n';
+                    results.warnings.forEach(warn => {
+                      comment += `- **${warn.field}**: ${warn.message}\n`;
+                    });
+                  }
+                }
+              } else {
+                comment += '⚠️ Validation results not available\n';
+              }
+            } catch (error) {
+              comment += `⚠️ Error reading validation results: ${error.message}\n`;
+            }
+
+            comment += '\n---\n';
+            comment += '*Automated validation by Code Challenge Hub*';
+
+            // Post comment on PR
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment
+            });
+
+      - name: Fail if validation failed
+        if: steps.changed-files.outputs.any_changed == 'true'
+        run: |
+          if [ -f validation-results.json ]; then
+            if ! grep -q '"valid":true' validation-results.json; then
+              echo "❌ Challenge validation failed!"
+              exit 1
+            fi
+          fi
+          echo "✅ Challenge validation passed!"
